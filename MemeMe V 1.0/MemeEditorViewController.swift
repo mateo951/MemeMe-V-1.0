@@ -20,36 +20,21 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Setting the delegates as reviewr asked becuase:
-        //upperTextField.delegate = self
-        //lowerTextField.delegate = self
-        // is repetitive and needs a method
-        func setDelegates(delegate: UITextFieldDelegate, textFields: [UITextField]) {
-            for i in textFields {
-                i.delegate = delegate
-            }
+        func configureTextFields(textField: UITextField, defaultText: String) {
+            // Default text Attributes
+            let textAttributes = [
+                NSStrokeColorAttributeName: UIColor.blackColor(),
+                NSForegroundColorAttributeName: UIColor.whiteColor(),
+                NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+                NSStrokeWidthAttributeName: -3.0
+            ]
+            textField.delegate = self
+            textField.defaultTextAttributes = textAttributes
+            textField.textAlignment = .Center
+            textField.text = defaultText
         }
-        setDelegates(self, textFields: [upperTextField, lowerTextField])
-        
-        // Default text of textFields
-        upperTextField.text = "TOP"
-        lowerTextField.text = "BOTTOM"
-        
-        // Default text Attributes
-        let textAttributes = [
-            NSStrokeColorAttributeName: UIColor.blackColor(),
-            NSForegroundColorAttributeName: UIColor.whiteColor(),
-            NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSStrokeWidthAttributeName: -3.0
-        ]
-        // Text Configuration Method
-        func configureTextFields(textField: [UITextField]) {
-            for i in textField {
-                i.defaultTextAttributes = textAttributes
-                i.textAlignment = .Center
-            }
-        }
-        configureTextFields([upperTextField, lowerTextField])
+        configureTextFields(upperTextField, defaultText: "TOP")
+        configureTextFields(lowerTextField, defaultText: "BOTTOM")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -151,7 +136,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
     // Shifting view's frame up
     func keyboardWillShow(notification: NSNotification) {
         if lowerTextField.isFirstResponder(){
-            self.view.frame.origin.y = getKeyboardHeight(notification)  * (-1);
+            self.view.frame.origin.y = getKeyboardHeight(notification)  * (-1)
             navBar.hidden = true
         }
         else if upperTextField.isFirstResponder(){

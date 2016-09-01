@@ -171,6 +171,17 @@
                                 <exclude reference="cuj-ce-YPx"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="5nm-6q-s3W"/>
+                                <exclude reference="KgY-C4-yOE"/>
+                                <exclude reference="mMU-XI-H6g"/>
+                                <exclude reference="1tw-sY-ofh"/>
+                                <exclude reference="BYr-hM-iGW"/>
+                                <exclude reference="y0t-QW-9rS"/>
+                                <exclude reference="12D-Bp-S6H"/>
+                                <exclude reference="71h-UD-b9X"/>
+                                <exclude reference="FwW-dS-sxu"/>
+                                <exclude reference="cz2-op-z4r"/>
+                                <exclude reference="eZW-CH-MjQ"/>
                                 <exclude reference="3d4-ih-l5R"/>
                                 <exclude reference="70Q-RY-wJB"/>
                                 <exclude reference="LRw-t3-QLm"/>
@@ -178,17 +189,6 @@
                                 <exclude reference="c1c-cM-UcC"/>
                                 <exclude reference="rgZ-DU-brY"/>
                                 <exclude reference="svD-OG-pQ9"/>
-                                <exclude reference="FwW-dS-sxu"/>
-                                <exclude reference="cz2-op-z4r"/>
-                                <exclude reference="eZW-CH-MjQ"/>
-                                <exclude reference="1tw-sY-ofh"/>
-                                <exclude reference="BYr-hM-iGW"/>
-                                <exclude reference="y0t-QW-9rS"/>
-                                <exclude reference="12D-Bp-S6H"/>
-                                <exclude reference="71h-UD-b9X"/>
-                                <exclude reference="5nm-6q-s3W"/>
-                                <exclude reference="KgY-C4-yOE"/>
-                                <exclude reference="mMU-XI-H6g"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -200,6 +200,17 @@
                                 <include reference="cuj-ce-YPx"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="5nm-6q-s3W"/>
+                                <include reference="KgY-C4-yOE"/>
+                                <include reference="mMU-XI-H6g"/>
+                                <include reference="1tw-sY-ofh"/>
+                                <include reference="BYr-hM-iGW"/>
+                                <include reference="y0t-QW-9rS"/>
+                                <include reference="12D-Bp-S6H"/>
+                                <include reference="71h-UD-b9X"/>
+                                <include reference="FwW-dS-sxu"/>
+                                <include reference="cz2-op-z4r"/>
+                                <include reference="eZW-CH-MjQ"/>
                                 <include reference="3d4-ih-l5R"/>
                                 <exclude reference="70Q-RY-wJB"/>
                                 <include reference="LRw-t3-QLm"/>
@@ -207,17 +218,6 @@
                                 <exclude reference="c1c-cM-UcC"/>
                                 <exclude reference="rgZ-DU-brY"/>
                                 <exclude reference="svD-OG-pQ9"/>
-                                <include reference="FwW-dS-sxu"/>
-                                <include reference="cz2-op-z4r"/>
-                                <include reference="eZW-CH-MjQ"/>
-                                <include reference="1tw-sY-ofh"/>
-                                <include reference="BYr-hM-iGW"/>
-                                <include reference="y0t-QW-9rS"/>
-                                <include reference="12D-Bp-S6H"/>
-                                <include reference="71h-UD-b9X"/>
-                                <include reference="5nm-6q-s3W"/>
-                                <include reference="KgY-C4-yOE"/>
-                                <include reference="mMU-XI-H6g"/>
                             </mask>
                         </variation>
                     </view>
