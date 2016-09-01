@@ -20,7 +20,10 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Setting the delegates
+        // Setting the delegates as reviewr asked becuase:
+        //upperTextField.delegate = self
+        //lowerTextField.delegate = self
+        // is repetitive and needs a method
         func setDelegates(delegate: UITextFieldDelegate, textFields: [UITextField]) {
             for i in textFields {
                 i.delegate = delegate
