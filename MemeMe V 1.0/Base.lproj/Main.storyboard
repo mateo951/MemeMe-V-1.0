@@ -7,10 +7,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Meme Editor-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemeMe_V_1_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MemeEditor" customModule="MemeMe_V_1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -102,7 +102,9 @@
                             <navigationBar contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="cuj-ce-YPx">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="GPr-8w-AtT"/>
+                                    <constraint firstAttribute="height" constant="44" id="GPr-8w-AtT">
+                                        <variation key="widthClass=compact" constant="65"/>
+                                    </constraint>
                                 </constraints>
                                 <textAttributes key="titleTextAttributes">
                                     <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
@@ -165,20 +167,20 @@
                                 <exclude reference="cuj-ce-YPx"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="3d4-ih-l5R"/>
-                                <exclude reference="70Q-RY-wJB"/>
-                                <exclude reference="LRw-t3-QLm"/>
-                                <exclude reference="c1c-cM-UcC"/>
-                                <exclude reference="FwW-dS-sxu"/>
-                                <exclude reference="cz2-op-z4r"/>
-                                <exclude reference="eZW-CH-MjQ"/>
+                                <exclude reference="5nm-6q-s3W"/>
+                                <exclude reference="KgY-C4-yOE"/>
                                 <exclude reference="1tw-sY-ofh"/>
                                 <exclude reference="BYr-hM-iGW"/>
                                 <exclude reference="y0t-QW-9rS"/>
                                 <exclude reference="12D-Bp-S6H"/>
                                 <exclude reference="71h-UD-b9X"/>
-                                <exclude reference="5nm-6q-s3W"/>
-                                <exclude reference="KgY-C4-yOE"/>
+                                <exclude reference="FwW-dS-sxu"/>
+                                <exclude reference="cz2-op-z4r"/>
+                                <exclude reference="eZW-CH-MjQ"/>
+                                <exclude reference="3d4-ih-l5R"/>
+                                <exclude reference="70Q-RY-wJB"/>
+                                <exclude reference="LRw-t3-QLm"/>
+                                <exclude reference="c1c-cM-UcC"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -190,20 +192,20 @@
                                 <include reference="cuj-ce-YPx"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="3d4-ih-l5R"/>
-                                <include reference="70Q-RY-wJB"/>
-                                <include reference="LRw-t3-QLm"/>
-                                <include reference="c1c-cM-UcC"/>
-                                <include reference="FwW-dS-sxu"/>
-                                <include reference="cz2-op-z4r"/>
-                                <include reference="eZW-CH-MjQ"/>
+                                <include reference="5nm-6q-s3W"/>
+                                <include reference="KgY-C4-yOE"/>
                                 <include reference="1tw-sY-ofh"/>
                                 <include reference="BYr-hM-iGW"/>
                                 <include reference="y0t-QW-9rS"/>
                                 <include reference="12D-Bp-S6H"/>
                                 <include reference="71h-UD-b9X"/>
-                                <include reference="5nm-6q-s3W"/>
-                                <include reference="KgY-C4-yOE"/>
+                                <include reference="FwW-dS-sxu"/>
+                                <include reference="cz2-op-z4r"/>
+                                <include reference="eZW-CH-MjQ"/>
+                                <include reference="3d4-ih-l5R"/>
+                                <include reference="70Q-RY-wJB"/>
+                                <include reference="LRw-t3-QLm"/>
+                                <include reference="c1c-cM-UcC"/>
                             </mask>
                         </variation>
                     </view>
@@ -213,13 +215,15 @@
                         <outlet property="cameraButton" destination="Mdu-LI-myN" id="oz5-Iu-zgd"/>
                         <outlet property="imageRetrieved" destination="Pgo-QW-lcg" id="BuM-ZO-v85"/>
                         <outlet property="lowerTextField" destination="sGX-jY-gT2" id="5LT-KX-ffL"/>
+                        <outlet property="navBar" destination="cuj-ce-YPx" id="ka3-bF-hJ5"/>
                         <outlet property="shareButton" destination="MrB-Fz-7V6" id="jNX-Om-NSN"/>
+                        <outlet property="toolbar" destination="VXu-uX-oBh" id="ygL-IN-pTC"/>
                         <outlet property="upperTextField" destination="Szh-SY-DfZ" id="Htm-6A-igI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="127.5" y="312"/>
+            <point key="canvasLocation" x="25.5" y="306"/>
         </scene>
     </scenes>
 </document>

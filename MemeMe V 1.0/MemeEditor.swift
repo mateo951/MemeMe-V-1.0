@@ -8,26 +8,26 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MemeEditor: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var imageRetrieved: UIImageView!
     @IBOutlet weak var upperTextField: UITextField!
     @IBOutlet weak var lowerTextField: UITextField!
     @IBOutlet weak var shareButton: UIBarButtonItem!
-    
-    struct Meme {
-        let topText: String
-        let lowerText: String
-        let originalImage: UIImage
-        let memedImage: UIImage
-    }
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var toolbar: UIToolbar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Setting the delegates
-        self.upperTextField.delegate = self
-        self.lowerTextField.delegate = self
+        func setDelegates(delegate: UITextFieldDelegate, textFields: [UITextField]) {
+            textFields.map {
+                $0.delegate = delegate
+            }
+        }
+        setDelegates(self, textFields: [upperTextField, lowerTextField])
+        
         // Default text of textFields
         upperTextField.text = "Up"
         lowerTextField.text = "Down"
@@ -36,7 +36,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
             NSStrokeColorAttributeName: UIColor.whiteColor(),
             NSForegroundColorAttributeName: UIColor.blackColor(),
             NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSStrokeWidthAttributeName: 0
+            NSStrokeWidthAttributeName: -2
         ]
         upperTextField.defaultTextAttributes = textAttributes
         lowerTextField.defaultTextAttributes = textAttributes
@@ -68,24 +68,28 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     
     // Presenting Views
     @IBAction func presentView(sender: AnyObject) {
+        // Couldnt create a method that accepts as an argument 'UIImagePickerControllerSourceType' to avoid repetition
+        // Something like this?
+        /*func presentView(type: UIImagePickerControllerSourceType) {
+            controller.sourceType = type
+        }*/
         let controller = UIImagePickerController()
-        // Image Picker
+        controller.delegate = self
+        // Photo
         if sender.tag == 0 {
-            controller.delegate = self
             controller.sourceType = .PhotoLibrary
             presentViewController(controller, animated: true, completion: nil)
         }
-        // Camera Picker
+        // Camera
         if sender.tag == 1 {
-            controller.delegate = self
             controller.sourceType = .Camera
             presentViewController(controller, animated: true, completion: nil)
         }
-        // Activity View 
+        // Activity View
         if sender.tag == 2 {
-            let controller = UIActivityViewController(activityItems: [generateMemedImage()], applicationActivities: nil)
-            self.presentViewController(controller, animated: true, completion: nil)
-            controller.completionWithItemsHandler = { activityType, completed, returnedItems, error -> () in
+            let activityC = UIActivityViewController(activityItems: [generateMemedImage()], applicationActivities: nil)
+            self.presentViewController(activityC, animated: true, completion: nil)
+            activityC.completionWithItemsHandler = { activityType, completed, returnedItems, error -> () in
                 self.save()
             }
         }
@@ -100,16 +104,20 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.text = ""
     }
-    
+    // Returning keyboard with return
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    // Close keyboard toaching on the screen
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
     // Subscribing class to recieve the notification
     func subscribeToKeyboardNotifications() {
@@ -124,11 +132,17 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     }
     // Shifting view's frame up
     func keyboardWillShow(notification: NSNotification) {
-        view.frame.origin.y -= getKeyboardHeight(notification)
+        if lowerTextField.isFirstResponder() {
+            view.frame.origin.y -= getKeyboardHeight(notification)
+            navBar.hidden = true
+        }
     }
     // Returning the view to it original state
     func keyboardWillHide(notification: NSNotification) {
-        view.frame.origin.y += getKeyboardHeight(notification)
+        if lowerTextField.isFirstResponder() {
+            view.frame.origin.y += getKeyboardHeight(notification)
+            navBar.hidden = false
+        }
     }
     // Unsubscribing
     func unsubscribeFromKeyboardNotifications() {
@@ -137,20 +151,23 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     }
     
     func generateMemedImage() -> UIImage {
+        // Hiding Toolbar and Nav bar
+        navBar.hidden = true
+        toolbar.hidden = true
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        print("memedImage generated")
+        // Show 
+        navBar.hidden = false
+        toolbar.hidden = false
         return memedImage
     }
-    
     func save() {
         //Create the meme
         let meme = Meme(topText: self.upperTextField.text!, lowerText: self.lowerTextField.text!, originalImage:
             self.imageRetrieved.image!, memedImage: generateMemedImage())
-        print("meme saved")
     }
 }
 
